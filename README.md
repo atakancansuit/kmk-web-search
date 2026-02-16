@@ -1,54 +1,66 @@
-# ⚖️ Legal-RAG v2
+# KMK Web Search: Apartman Yönetimi Hukuk Asistanı
 
-Bu proje, **Kat Mülkiyeti Kanunu** üzerine uzmanlaşmış yapay zeka destekli bir hukuk asistanıdır.
-RAG (Retrieval-Augmented Generation) mimarisini kullanarak kullanıcının sorularını resmi kanun metinlerinden cevaplar.
+## Proje Hakkında
+Bu proje, apartman yönetimi, Kat Mülkiyeti Kanunu, komşuluk ilişkileri ve gayrimenkul hukuku alanındaki sorulara yanıt vermek üzere geliştirilmiş özelleştirilmiş bir yapay zeka asistanıdır.
 
-## 🚀 Proje Mimarisi (v2)
+Sistem, OpenAI GPT-4o-mini dil modelini temel alarak çalışır ancak yanıtlarını yalnızca Türkiye Cumhuriyeti'nin resmi mevzuat portalı olan **mevzuat.gov.tr** üzerinden gerçekleştirdiği gerçek zamanlı aramalarla oluşturur. Bu sayede, genel geçer bilgiler yerine güncel, doğrulanabilir ve hukuki dayanağı olan yanıtlar sunulması hedeflenmiştir.
 
-Bu versiyon, önceki modele göre daha yalın ve güçlüdür:
-1.  **Framework-Free**: LangChain karmaşası olmadan, saf Python (Native SDKs) ile yazıldı.
-2.  **Cloud Native**: Vektör veritabanı **ChromaDB Cloud**, Embedding ise **OpenAI** tarafından sağlanır.
-3.  **Hafif (Lightweight)**: Arkadaşlarınızın bilgisayarını yormaz, ağır modeller indirmez.
-4.  **Model**: OpenAI `gpt-4o-mini` modeli ile hızlı ve doğru cevaplar üretir.
+**Sistemin Temel Özellikleri:**
+1.  **Resmi Kaynak Odaklılık:** Yanıtlar yalnızca `mevzuat.gov.tr` kaynaklarından derlenir.
+2.  **Şeffaflık:** Asistan, verdiği her bilginin kaynağını ve ilgili internet bağlantısını kullanıcı ile paylaşır.
+3.  **Yüksek Tutarlılık:** Deterministik ayarlar sayesinde benzer sorulara tutarlı ve standart yanıtlar üretilir.
+4.  **Hafif Mimari:** Herhangi bir yerel veritabanı veya ağır indeksleme işlemi gerektirmez; tamamen web tabanlı arama motoru entegrasyonu ile çalışır.
 
 ---
 
-## 🛠️ Kurulum (Nasıl Çalıştırılır?)
+## Kurulum ve Çalıştırma Rehberi
 
-Bu projeyi bilgisayarınıza indirdiğinizde çalıştırmak için şu adımları izleyin:
+Bu projeyi kendi bilgisayarınızda çalıştırmak için aşağıdaki adımları takip edebilirsiniz.
 
-### 1. Kurulumu Yapın
-Gerekli kütüphaneleri yüklemek için:
+### Ön Hazırlık
+Projenin çalışabilmesi için bilgisayarınızda **Python 3.8** veya üzeri bir sürümün yüklü olması gerekmektedir.
+
+### 1. Kurulumu Gerçekleştirin
+Projeyi indirdiğiniz dizinde bir terminal açın ve gerekli kütüphanelerin yüklenmesi için aşağıdaki komutu çalıştırın:
+
 ```bash
 make setup
 ```
 
-### 2. API Anahtarlarını Girin
-`.env.example` dosyasının adını `.env` olarak değiştirin ve içeriğini doldurun:
-*   `OPENAI_API_KEY`: Model için gerekli.
-*   `CHROMA_API_KEY`: Veritabanı için gerekli.
-
-### 3. Veri Yükleme (Ingestion)
-PDF dosyasını okuyup veritabanına yüklemek için (Bu işlemi sadece bir kez yapmanız yeterli):
+Eğer `make` komutu sisteminizde tanımlı değilse, alternatif olarak şu komutu kullanabilirsiniz:
 ```bash
-make ingest
+pip install -r requirements.txt
 ```
 
-### 4. Uygulamayı Başlatın
-Arayüzü açmak için:
+### 2. Yapılandırma Ayarlarını Girin
+Proje dizininde yer alan `.env.example` dosyasının adını `.env` olarak değiştirin. Bu dosyayı bir metin editörü ile açarak `OPENAI_API_KEY` alanına kendi OpenAI API anahtarınızı giriniz.
+
+Örnek `.env` içeriği:
+```env
+OPENAI_API_KEY=sk-proj-...
+```
+
+### 3. Uygulamayı Başlatın
+Kurulum ve yapılandırma tamamlandıktan sonra uygulamayı başlatmak için terminale şu komutu girin:
+
 ```bash
 make run
 ```
 
+Alternatif başlatma komutu:
+```bash
+streamlit run app.py
+```
+
+Uygulama başarıyla başladığında, tarayıcınızda otomatik olarak açılacaktır. Açılmazsa terminalde belirtilen yerel adresi (genellikle `http://localhost:8501`) tarayıcınıza kopyalayabilirsiniz.
+
 ---
 
-## 📂 Dosya Yapısı (Ne Nerede?)
+## Dosya Yapısı ve Teknik Detaylar
 
-*   `src/config.py`: Tüm ayarların (Model isimleri, API keyler) durduğu kontrol merkezi.
-*   `src/utils.py`: Veritabanı bağlantısı gibi ortak işleri yapan "alet çantası".
-*   `src/ingestion.py`: "Fabrika". PDF'i okur, parçalar ve veritabanına yükler.
-*   `src/rag.py`: "Motor". Soruyu alır, cevabı üretir.
-*   `app.py`: "Vitrin". Kullanıcının gördüğü Streamlit ekranı.
+Projenin teknik mimarisi aşağıdaki dosyalardan oluşmaktadır:
 
-## 💡 İpucu
-Uygulama içinde sol menüden (Sidebar) "Local" veya "Cloud" veri kaynağı arasında geçiş yapabilirsiniz. "Local" seçeneği daha ekonomiktir.
+*   **src/rag.py**: Ana işlem motorudur. Kullanıcı sorusunu analiz eder, arama stratejisini belirler ve sonuçları işleyerek nihai yanıtı oluşturur.
+*   **src/web_search.py**: Arama modülüdür. `duckduckgo-search` kütüphanesini kullanarak `site:mevzuat.gov.tr` filtresi ile arama yapar.
+*   **src/config.py**: Sistemin çalışma parametrelerini (model adı, arama limitleri, sistem talimatları) barındırır.
+*   **app.py**: Kullanıcı arayüzünü (Streamlit) oluşturan dosyadır.
