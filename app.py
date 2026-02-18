@@ -44,7 +44,7 @@ if prompt := st.chat_input("Sorunuzu buraya yazın..."):
         with st.spinner("İnceleniyor..."):
             try:
                 # SADECE WEB ARAMASI
-                cevap, kaynaklar = st.session_state.rag_system.generate_answer(prompt)
+                cevap, kaynaklar, _ = st.session_state.rag_system.generate_answer(prompt)
                 
                 st.markdown(cevap)
                 with st.expander("📚 Kaynaklar"):

@@ -6,11 +6,15 @@ PIP = pip
 help:
 	@echo "🛠️  Komutlar (KMK Web Search):"
 	@echo "  make setup          : Gerekli kütüphaneleri yükle"
+	@echo "  make eval           : Modeli yeniden değerlendir (src/evaluation.py)"
 	@echo "  make run            : Uygulamayı başlat (Streamlit)"
 	@echo "  make clean          : Geçici dosyaları temizle"
 
 setup:
 	$(PIP) install -r requirements.txt
+
+eval:
+	$(PYTHON) src/evaluation.py
 
 run:
 	streamlit run app.py

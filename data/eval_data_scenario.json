@@ -1,0 +1,30 @@
+[
+    {
+        "question": "Zorunlu Müdahale mi, Estetik Değişiklik mi? (Cam Balkon İkilemi)\nSenaryo: Daire sakini, binanın dış görünüşünü bozduğu gerekçesiyle yönetim planında yasaklanmış olmasına rağmen, kuzey cephedeki dairesine ısı yalıtımı sağlamak amacıyla 'şeffaf, katlanır cam balkon' yaptırıyor. Yönetici sökülmesi için dava açıyor. Daire sakini bunun sabit bir inşaat olmadığını, taşınır olduğunu ve ısınma ihtiyacı (enerji tasarrufu) için zorunlu olduğunu savunuyor. Kim haklı?",
+        "ground_truth_answer": "Yönetim haklıdır, sökülmesi gerekir. KMK Madde 19 'anagayrimenkulün dış görünümünü değiştirmeyi' yasaklar. Yargıtay Hukuk Genel Kurulu'nun yerleşik içtihadına göre; cam balkon sistemi seyyar/katlanır olsa bile binanın dış estetiğini ve mimari projesini değiştiren bir imalattır. Isı yalıtımı bir ihtiyaç olsa da, bu ihtiyaç binanın dış bütünlüğünü bozarak (diğer maliklerin 4/5 yazılı rızası olmadan) giderilemez."
+    },
+    {
+        "question": "Fiili Kullanım ve Ecrimisil (Bahçe Katı İşgali)\nSenaryo: Zemin kattaki dairenin balkonu doğrudan apartman bahçesine açılıyor. Bahçeye başka bir giriş yok (diğer katlardan inilemiyor). Zemin kattaki ev sahibi, 'Buraya başkası giremiyor, fiilen benim' diyerek bahçeyi çitle çevirip kendine özel hale getiriyor. Üst kattaki komşu, bahçeyi kullanamasa bile bu durumdan şikayetçi olup tazminat (ecrimisil) isteyebilir mi?",
+        "ground_truth_answer": "Evet, çiti kaldırtabilir ve geriye dönük ecrimisil (haksız işgal tazminatı) isteyebilir. Bir alanın 'fiilen' sadece bir daire tarafından erişilebilir olması, o alanın 'hukuken' ortak alan olma vasfını değiştirmez. Mimari projede orası 'ortak alan' görünüyorsa, zemin kattaki kişi orayı özgüleyemez. Diğer malikler orayı kullanmasalar bile, mülkiyet hakkına tecavüz edildiği için tazminat talep edebilirler."
+    },
+    {
+        "question": "Kapı Dürbünü mü, Casus Kamera mı? (KVKK Çatışması)\nSenaryo: Bir daire sakini, güvenlik endişesiyle dairesinin çelik kapısına, hareket sensörlü ve ses kayıt özellikli bir 'akıllı kapı zili/kamera' taktırıyor. Bu kamera, karşı komşunun kapısının ne zaman açılıp kapandığını ve koridordan geçenleri de görüyor. Karşı komşu 'özel hayatımın gizliliği ihlal ediliyor' diyerek kamerayı söktürmek istiyor. Kamera sökülmeli mi?",
+        "ground_truth_answer": "Evet, sökülmeli veya açısı sadece kendi kapı önünü görecek şekilde (karşı daireyi görmeyecek şekilde) değiştirilmelidir. Burada KMK değil, TCK (Özel Hayatın Gizliliği) ve KVKK devreye girer. Apartman koridoru 'kamusal alan' değil, 'ortak kullanım alanı'dır ancak komşunun kapı girişi onun özel hayat alanına dahildir. Güvenlik amacı (meşru menfaat), komşunun mahremiyetini (temel hak) sürekli gözetleyerek ihlal edemez. Ses kaydı almak ise daha ağır bir ihlaldir."
+    },
+    {
+        "question": "Yakmayan Komşu Sorunu (Isı Pay Ölçer ve 15 Derece Kuralı)\nSenaryo: Merkezi sistemle ısınan (pay ölçerli) bir binada, ara kattaki daire sakini 'Ben kışın evde yokum' diyerek peteklerini tamamen kapatıyor. Üst ve alt komşu, zeminleri soğuduğu için daha fazla yakmak zorunda kalıyor ve 'bizim ısımızı çalıyor' diye dava açıyor. Evde olmayan kişi yakıt parası ödemek zorunda mı?",
+        "ground_truth_answer": "Evet, ödemek zorundadır (hem sabit gideri hem de asgari tüketim bedelini). Enerji Verimliliği Kanunu ve ilgili yönetmelik gereği, merkezi sistemli binalarda daire sıcaklığı 15 derecenin altına düşürülemez. Daire boş olsa bile sistemden tamamen koparılamaz. Eğer petekleri tamamen kapatırsa, yönetim ona 'emsal tüketim' üzerinden veya belirlenen asgari tutar üzerinden fatura çıkarabilir."
+    },
+    {
+        "question": "Kiracının Oy Hakkı ve Vekalet (Toplantı Katılımı)\nSenaryo: Ev sahibi yurt dışında olan bir kiracı, apartman toplantısına katılıyor. Ev sahibi ona yazılı bir vekaletname vermemiş ama WhatsApp'tan 'Benim yerime toplantıya katıl, dış cephe mantolaması için kabul oyu ver' diye mesaj atmış. Yönetici, kiracının oyunu kabul etmiyor. Kiracı, 'Mesaj var, iradesi bu yönde' diyor. Bu oy geçerli mi?",
+        "ground_truth_answer": "Hayır, geçerli değildir. KMK'ya göre kat malikleri kurulunda oy hakkı malike aittir. Kiracı ancak 'yazılı vekalet' ile temsilci olabilir. WhatsApp mesajı delil başlangıcı sayılsa da, toplantı divanı açısından resmi bir yetkilendirme (ıslak imzalı belge veya noter vekaleti) aranır. Özellikle 'mantolama' gibi mülkiyeti ilgilendiren büyük giderlerde, şekil şartı katıdır."
+    },
+    {
+        "question": "Airbnb ve Yeni Yasa (Turizm Amaçlı Kiralama)\nSenaryo: Bir site sakini, dairesini Airbnb üzerinden günübirlik kiralamak istiyor. Yönetim planında buna dair bir yasak yok. Apartman sakinlerinin %80'i buna izin veriyor ancak 2 daire sahibi şiddetle karşı çıkıyor. Bu kişi yasal olarak Airbnb yapabilir mi?",
+        "ground_truth_answer": "Hayır, yapamaz. 2024 yılında yürürlüğe giren 'Konutların Turizm Amaçlı Kiralanması Hakkında Kanun' gereği, bir binada turizm amaçlı kiralama (kısa süreli) yapılabilmesi için kat maliklerinin %100'ünün (oy birliği) yazılı onayı gerekir. Yönetim planında yasak olmaması veya çoğunluğun kabul etmesi yetmez; tek bir komşunun bile 'hayır' demesi bu faaliyeti engeller."
+    },
+    {
+        "question": "Çatı Akması ve Yöneticinin Cezai Sorumluluğu (İhmal ve Zarar)\nSenaryo: Çatı uzun süredir akıyor. Yönetici defalarca toplantı yapıp para toplanmasını istiyor ancak genel kurul (kat malikleri) 'Paramız yok, seneye yaparız' diye reddediyor. Bir fırtınada çatıdan kopan bir parça yoldan geçen bir arabanın üzerine düşüyor. Araç sahibi yöneticiye dava açıyor. Yönetici 'Ben söyledim, yapmadılar' diyerek kurtulabilir mi?",
+        "ground_truth_answer": "Yönetici kısmen sorumludur ancak asıl sorumlu kat malikleridir. Yönetici, 'gecikmesinde sakınca bulunan haller' kapsamında olduğu için genel kurul kararı beklemeden de (mahkemeden tedbir isteyerek veya acil onarım yetkisini kullanarak) müdahale etmeliydi. KMK Madde 35 yöneticiye 'anagayrimenkulün korunması ve bakımı' görevini verir. Çatının çökme riski varsa bu 'acil' bir durumdur."
+    }
+]

@@ -1,66 +1,64 @@
-# KMK Web Search: Apartman Yönetimi Hukuk Asistanı
+# KMK Hukuk Asistanı
 
 ## Proje Hakkında
-Bu proje, apartman yönetimi, Kat Mülkiyeti Kanunu, komşuluk ilişkileri ve gayrimenkul hukuku alanındaki sorulara yanıt vermek üzere geliştirilmiş özelleştirilmiş bir yapay zeka asistanıdır.
+KMK Hukuk Asistanı, apartman ve site yönetimi, Kat Mülkiyeti Kanunu ve ilgili mevzuat konularında kullanıcıların sorularını yanıtlamak üzere geliştirilmiş bir yapay zeka uygulamasıdır. Sistem, OpenAI GPT-4o modelini kullanarak kullanıcı sorularını analiz eder ve **Mevzuat.gov.tr**, **Resmi Gazete**, **Türkiye Barolar Birliği** gibi resmi ve güvenilir kaynaklar üzerinde gerçek zamanlı arama yaparak yanıt üretir.
 
-Sistem, OpenAI GPT-4o-mini dil modelini temel alarak çalışır ancak yanıtlarını yalnızca Türkiye Cumhuriyeti'nin resmi mevzuat portalı olan **mevzuat.gov.tr** üzerinden gerçekleştirdiği gerçek zamanlı aramalarla oluşturur. Bu sayede, genel geçer bilgiler yerine güncel, doğrulanabilir ve hukuki dayanağı olan yanıtlar sunulması hedeflenmiştir.
+Bu proje, yerel bir veritabanı yerine internet üzerindeki güncel hukuki kaynakları tarayarak çalıştığı için her zaman en güncel mevzuat bilgilerine erişim sağlar.
 
-**Sistemin Temel Özellikleri:**
-1.  **Resmi Kaynak Odaklılık:** Yanıtlar yalnızca `mevzuat.gov.tr` kaynaklarından derlenir.
-2.  **Şeffaflık:** Asistan, verdiği her bilginin kaynağını ve ilgili internet bağlantısını kullanıcı ile paylaşır.
-3.  **Yüksek Tutarlılık:** Deterministik ayarlar sayesinde benzer sorulara tutarlı ve standart yanıtlar üretilir.
-4.  **Hafif Mimari:** Herhangi bir yerel veritabanı veya ağır indeksleme işlemi gerektirmez; tamamen web tabanlı arama motoru entegrasyonu ile çalışır.
+## Temel Özellikler
+- **Resmi Kaynak Tarama:** Yanıtlar yalnızca doğrulanmış hukuk sitelerinden (mevzuat.gov.tr, resmigazete.gov.tr vb.) elde edilen verilerle oluşturulur.
+- **Çoklu Sorgu Stratejisi:** Sorunun hem yasal mevzuat hem de yargı içtihatları (emsal kararlar) yönünü kapsayacak şekilde çoklu arama yapar.
+- **Kaynak Gösterimi:** Üretilen yanıtta kullanılan kaynaklar ve ilgili bağlantılar şeffaf bir şekilde listelenir.
+- **Kullanıcı Dostu Arayüz:** Streamlit tabanlı basit ve anlaşılır bir web arayüzü sunar.
 
----
+## Kurulum
 
-## Kurulum ve Çalıştırma Rehberi
+Projeyi çalıştırmak için aşağıdaki adımları izleyebilirsiniz.
 
-Bu projeyi kendi bilgisayarınızda çalıştırmak için aşağıdaki adımları takip edebilirsiniz.
+### 1. Gereksinimler
+Sistemin çalışması için Python 3.8 veya üzeri bir sürümün yüklü olması gerekmektedir. Proje dizininde gerekli kütüphaneleri yüklemek için terminalde şu komutu çalıştırın:
 
-### Ön Hazırlık
-Projenin çalışabilmesi için bilgisayarınızda **Python 3.8** veya üzeri bir sürümün yüklü olması gerekmektedir.
-
-### 1. Kurulumu Gerçekleştirin
-Projeyi indirdiğiniz dizinde bir terminal açın ve gerekli kütüphanelerin yüklenmesi için aşağıdaki komutu çalıştırın:
-
-```bash
-make setup
-```
-
-Eğer `make` komutu sisteminizde tanımlı değilse, alternatif olarak şu komutu kullanabilirsiniz:
 ```bash
 pip install -r requirements.txt
 ```
 
-### 2. Yapılandırma Ayarlarını Girin
-Proje dizininde yer alan `.env.example` dosyasının adını `.env` olarak değiştirin. Bu dosyayı bir metin editörü ile açarak `OPENAI_API_KEY` alanına kendi OpenAI API anahtarınızı giriniz.
+### 2. Ortam Değişkenleri
+Projenin çalışabilmesi için bir OpenAI API anahtarına ihtiyacınız vardır. Proje ana dizininde `.env` adında bir dosya oluşturun ve API anahtarınızı aşağıdaki formatta ekleyin:
 
-Örnek `.env` içeriği:
 ```env
 OPENAI_API_KEY=sk-proj-...
 ```
 
-### 3. Uygulamayı Başlatın
-Kurulum ve yapılandırma tamamlandıktan sonra uygulamayı başlatmak için terminale şu komutu girin:
+## Kullanım
 
-```bash
-make run
-```
+Kurulum tamamlandıktan sonra uygulamayı başlatmak için terminalde aşağıdaki komutu kullanın:
 
-Alternatif başlatma komutu:
 ```bash
 streamlit run app.py
 ```
 
-Uygulama başarıyla başladığında, tarayıcınızda otomatik olarak açılacaktır. Açılmazsa terminalde belirtilen yerel adresi (genellikle `http://localhost:8501`) tarayıcınıza kopyalayabilirsiniz.
+Komut çalıştırıldığında, uygulamanız varsayılan tarayıcınızda (genellikle http://localhost:8501 adresinde) otomatik olarak açılacaktır.
 
----
+## Yapılandırma
 
-## Dosya Yapısı ve Teknik Detaylar
+Uygulamanın kullandığı yapay zeka modeli ve yaratıcılık seviyesi gibi parametreleri `src/config.py` dosyası üzerinden değiştirebilirsiniz.
 
-Projenin teknik mimarisi aşağıdaki dosyalardan oluşmaktadır:
+**Dosya Yolu:** `src/config.py`
 
-*   **src/rag.py**: Ana işlem motorudur. Kullanıcı sorusunu analiz eder, arama stratejisini belirler ve sonuçları işleyerek nihai yanıtı oluşturur.
-*   **src/web_search.py**: Arama modülüdür. `duckduckgo-search` kütüphanesini kullanarak `site:mevzuat.gov.tr` filtresi ile arama yapar.
-*   **src/config.py**: Sistemin çalışma parametrelerini (model adı, arama limitleri, sistem talimatları) barındırır.
-*   **app.py**: Kullanıcı arayüzünü (Streamlit) oluşturan dosyadır.
+- **Model Değişikliği:**
+  `LLM_MODEL` değişkenini değiştirerek farklı bir model kullanabilirsiniz (Örn: "gpt-3.5-turbo").
+  ```python
+  LLM_MODEL = "gpt-4o"
+  ```
+
+- **Yaratıcılık Ayarı (Temperature):**
+  `TEMPERATURE` değişkeni, modelin üreteceği yanıtların çeşitliliğini belirler. Hukuki konularda tutarlılık için bu değerin **0** olması önerilir.
+  ```python
+  TEMPERATURE = 0
+  ```
+
+- **Arama Siteleri:**
+  `SEARCH_SITES` listesinden arama yapılacak kaynak siteleri ekleyip çıkarabilirsiniz.
+  ```python
+  SEARCH_SITES = ["mevzuat.gov.tr", "resmigazete.gov.tr", ...]
+  ```
